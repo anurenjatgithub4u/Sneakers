@@ -8,6 +8,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -266,19 +267,24 @@ fun HomeScreens(
                     Spacer(modifier = Modifier.height(40.dp))
 
 
-
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 16.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                         OutlinedButton(
                             onClick = {
-                                      navController.navigate(Screens.ProductScreen.route)
+                                navController.navigate(Screens.ProductScreen.route)
                             },
                             modifier = modifier
-                                .align(Center)
-                                .padding(start = 150.dp)
+
                         ) {
                             Text(text = "View All", color = MaterialTheme.colorScheme.tertiary)
                         }
 
-
+                    }
 
                 }
 

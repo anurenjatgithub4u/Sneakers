@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -44,13 +47,20 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.thirty.nikeapp.Screens
-import com.thirty.nikeapp.data.dummySneakers
+import com.thirty.nikeapp.data.dummySneakersEight
+import com.thirty.nikeapp.data.dummySneakersFive
+import com.thirty.nikeapp.data.dummySneakersFour
+import com.thirty.nikeapp.data.dummySneakersNine
+import com.thirty.nikeapp.data.dummySneakersOne
+import com.thirty.nikeapp.data.dummySneakersSeven
+import com.thirty.nikeapp.data.dummySneakersSix
+import com.thirty.nikeapp.data.dummySneakersThree
 import com.thirty.nikeapp.data.dummySneakersTwo
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ProductScreen(modifier: Modifier=Modifier,navController: NavController) {
+fun ProductScreen(modifier: Modifier = Modifier, navController: NavController) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     val localCoroutineScope = rememberCoroutineScope()
@@ -77,63 +87,73 @@ fun ProductScreen(modifier: Modifier=Modifier,navController: NavController) {
                 .background(MaterialTheme.colorScheme.primary)
         ) {
 
-            Row() {
 
-                LazyColumn(
-                    modifier = modifier.padding(
-                        start = 20.dp, end = 20.dp, bottom = 20.dp,
-                        top = 40.dp
-
-
-                    )
-                ) {
+            LazyColumn(
+                modifier = modifier.padding(
+                    start = 20.dp, end = 20.dp, bottom = 20.dp,
+                    top = 40.dp
 
 
-                    items(dummySneakers) { sneaker ->
+                )
+            ) {
 
 
-                        Card(
-                            colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
-                            modifier = modifier.clickable {
-                                navController.navigate(Screens.ProductDetailsScreen.route)
-
-                            }) {
-                            Image(
-                                painter = rememberAsyncImagePainter(sneaker.imageUrl),
-                                contentDescription = sneaker.name,
-                                modifier = Modifier
-                                    .width(150.dp)
-                                    .height(150.dp)
-                            )
+                item {
 
 
-                            Row() {
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersOne){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
                                 var isFilled by remember { mutableStateOf(false) }
                                 Text(
-                                    text = sneaker.name,
-                                    modifier = Modifier.padding(16.dp),
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
                                     MaterialTheme.colorScheme.tertiary
                                 )
-                                IconButton(onClick = {
 
-                                    localCoroutineScope.launch {
-                                        snackbarHostState.showSnackbar(
-                                            message = "Added to Favourites"
-                                        )
-                                    }
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Star,
-                                        contentDescription = "Toggleable Icon",
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
 
-                                    )
-                                }
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
                             }
-
                         }
-
-
                     }
+
+
+
 
 
 
@@ -143,53 +163,57 @@ fun ProductScreen(modifier: Modifier=Modifier,navController: NavController) {
 
                 }
 
-                Spacer(modifier = Modifier.width(10.dp))
-
-                LazyColumn(
-                    modifier = modifier.padding(
-                        start = 20.dp, end = 20.dp, bottom = 20.dp,
-                        top = 40.dp
+                item {
 
 
-                    )
-                ) {
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
 
 
-                    items(dummySneakersTwo){sneakersTwo->
-
-                        Card(modifier = modifier.clickable {
-                            navController.navigate(Screens.ProductDetailsScreen.route)
-
-                        },colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary)) {
-                            Image(
-                                painter = rememberAsyncImagePainter(sneakersTwo.imageUrl),
-                                contentDescription = sneakersTwo.name,
-                                modifier = Modifier
-                                    .width(150.dp)
-                                    .height(150.dp)
-                            )
+                        items(dummySneakersTwo){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
 
 
-                            Row() {
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
                                 var isFilled by remember { mutableStateOf(false) }
                                 Text(
-                                    text = sneakersTwo.name,
-                                    modifier = Modifier.padding(16.dp),
-                                    color = MaterialTheme.colorScheme.tertiary
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
                                 )
-                                IconButton(onClick = {   localCoroutineScope.launch {
-                                    snackbarHostState.showSnackbar(
-                                        message = "Added to Favourites"
-                                    )
-                                }}) {
-                                    Icon(
-                                        imageVector = Icons.Default.Star,
-                                        contentDescription = "Toggleable Icon",
 
-                                    )
-                                }
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
                             }
-
                         }
                     }
 
@@ -199,15 +223,478 @@ fun ProductScreen(modifier: Modifier=Modifier,navController: NavController) {
 
 
 
+
+
+
                 }
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersThree){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersFour){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersFive){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersSix){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersSeven){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersEight){ sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+                item {
+
+
+                    LazyRow(horizontalArrangement = Arrangement.SpaceBetween) {
+
+
+                        items(dummySneakersNine){sneakerOne->
+                            Card(
+                                colors = CardDefaults.cardColors(androidx.compose.material3.MaterialTheme.colorScheme.primary),
+                                modifier = modifier.clickable {
+
+
+                                }.padding(start = 15.dp)) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(sneakerOne.imageUrl),
+                                    contentDescription = sneakerOne.name,
+                                    modifier = Modifier
+                                        .width(150.dp)
+                                        .height(150.dp).clickable {
+                                            navController.navigate(Screens.ProductDetailsScreen.route)
+                                        }
+                                )
+
+
+                                var isFilled by remember { mutableStateOf(false) }
+                                Text(
+                                    text = sneakerOne.name,
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+
+                                Text(
+                                    text = "Price : 4590",
+                                    modifier = Modifier.padding(start = 16.dp),
+                                    MaterialTheme.colorScheme.tertiary
+                                )
+                                Text(
+                                    text = "Add to Cart",
+                                    modifier = Modifier.padding(start = 16.dp).clickable {
+
+                                        localCoroutineScope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message = "Added to Cart"
+                                            )
+                                        }
+                                    },
+                                    Color.Blue
+                                )
+
+
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+
+
             }
 
 
-
         }
-    }
 
+
+    }
 }
+
+
 
 
 
