@@ -68,3 +68,35 @@ Thank you for checking out the Sneakers Shopping App UI! We hope you find it hel
 
 ![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
+
+
+
+
+![WhatsApp Image 2023-07-21 at 03 28 31](https://github.com/anurenjatgithub4u/Sneakers/assets/124539091/d2d29e83-f6b5-4d56-ad27-417713af759a)
+
+
+![WhatsApp Image 2023-07-21 at 03 28 30 (1)](https://github.com/anurenjatgithub4u/Sneakers/assets/124539091/30276122-cd39-4b6b-b567-554e7ba0a3ef)
+
+
+![WhatsApp Image 2023-07-21 at 03 28 31 (2)](https://github.com/anurenjatgithub4u/Sneakers/assets/124539091/6dbcb4cf-9355-44c8-a0ce-d6acafa661b5)
+
+
+![WhatsApp Image 2023-07-21 at 03 28 31 (1)](https://github.com/anurenjatgithub4u/Sneakers/assets/124539091/f7fd44f2-31be-46f5-bebf-6ef9cc161ea3)
+
+
+![WhatsApp Image 2023-07-21 at 03 28 30](https://github.com/anurenjatgithub4u/Sneakers/assets/124539091/9e307536-9067-484c-8736-ef508c2e068f)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
