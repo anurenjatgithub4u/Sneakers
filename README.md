@@ -58,7 +58,7 @@ This app UI is open-source and available under the MIT License. See the LICENSE 
 Contact
 For any inquiries or questions, please reach out to:
 
-Your Name
+ Name : Anurenj Sudheer
 
 Email: anurenjatwork@gmail.com
 GitHub: https://github.com/anurenjatgithub4u
